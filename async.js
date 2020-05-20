@@ -141,7 +141,8 @@ class SecondClock {
 // }, 6000);
 
 /* CHALLENGE 10 */
-
+//IMPLEMENTATION 1
+/*
 function debounce(callback, interval) {
   // ADD CODE HERE
   let bouncer = 0;
@@ -161,7 +162,29 @@ function debounce(callback, interval) {
     }
   };
 }
+*/
+// IMPLEMENTATION 2 (imo best)
 
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+/* REASON - shorter and works with object functions
+function sayHello() {
+  console.log("My name is", this.name);
+}
+
+const amy = {
+  name: "amy",
+  speak: debounce(sayHello),
+};
+
+amy.speak();
+*/
 // UNCOMMENT THESE TO TEST YOUR WORK!
 function giveHi() {
   return "hi";
